@@ -1,0 +1,42 @@
+{
+	"name": "modeling",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"workspaceFolder": "/workspaces/modeling-practice",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-typescript-next",
+				"pmneo.tsimporter",
+				"yoavbls.pretty-ts-errors",
+				"streetsidesoftware.code-spell-checker",
+				"biomejs.biome",
+				"ms-playwright.playwright"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"files.autoSave": "afterDelay",
+				"files.autoSaveDelay": 1000,
+				"editor.defaultFormatter": "biomejs.biome",
+				"editor.codeActionsOnSave": {
+					"quickfix.biome": "always",
+					"source.organizeImports.biome": "always"
+				},
+				"cSpell.ignorePaths": [
+					"**/package.json",
+					"**/settings.json",
+					"**/node_modules/**",
+					"**/vscode-extension/**",
+					"**/.vscode/**",
+					"**/yarn.lock",
+					"**/devcontainer.json"
+				]
+			}
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {},
+		"ghcr.io/devcontainers-community/npm-features/typescript:1": {},
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/shyim/devcontainers-features/bun:0": {}
+	}
+}
