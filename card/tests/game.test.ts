@@ -3,10 +3,6 @@ import { Game } from '../src/game';
 
 describe('Game', () => {
 	describe('getWinner', () => {
-		test('ゲームが勝者を判定できる', () => {
-			const game = new Game('れつ', 'おおくら');
-			expect(game.getWinner()).toBe('れつ');
-		});
 		test.todo('ダメージが0だと両方勝っていない');
 	});
 
@@ -16,7 +12,7 @@ describe('Game', () => {
 			game.attackToInactivePlayer(1);
 			expect(game.getWinner()).toBe('れつ');
 		});
-		test.todo('交代しておおくらがれつに攻撃', () => {
+		test('交代しておおくらがれつに攻撃', () => {
 			const game = new Game('れつ', 'おおくら');
 			game.turnChange();
 			game.attackToInactivePlayer(1);
