@@ -4,22 +4,37 @@ export class Game {
 	}
 
 	turnChange(): void {
-		if (this.activePlayer === this.player1) {
-			this.activePlayer = this.player2;
+		if (this.activePlayer === this.player1Name) {
+			this.activePlayer = this.player2Name;
 		} else {
-			this.activePlayer = this.player1;
+			this.activePlayer = this.player1Name;
 		}
 	}
 
 	constructor(
-		private player1: string,
-		private player2: string,
-		private activePlayer: string = player1,
+		// TODO: playerのinterfaceを切る
+		private player1Name: string,
+		private player2Name: string,
+		private player1Life = 1,
+		private player2Life = 1,
+		private activePlayer: string = player1Name,
 	) {}
 
-	getWinner(): string {
-		return this.player1;
+	getWinner(): string | null {
+		if (this.player1Life <= 0) {
+			return this.player2Name;
+		}
+		if (this.player2Life <= 0) {
+			return this.player1Name;
+		}
+		return null;
 	}
 
-	attackToInactivePlayer(damage: number): void {}
+	attackToInactivePlayer(damage: number): void {
+		if (this.isActivePlayer() === this.player1Name) {
+			this.player2Life -= damage;
+		} else {
+			this.player1Life -= damage;
+		}
+	}
 }
