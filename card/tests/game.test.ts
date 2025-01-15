@@ -16,8 +16,19 @@ describe('Game', () => {
 			game.attackToInactivePlayer(1);
 			expect(game.getWinner()).toBe('れつ');
 		});
-		test.todo('交代しておおくらがれつに攻撃', () => {});
+		test.todo('交代しておおくらがれつに攻撃', () => {
+			const game = new Game('れつ', 'おおくら');
+			game.turnChange();
+			game.attackToInactivePlayer(1);
+			expect(game.getWinner()).toBe('おおくら');
+		});
 	});
 
-	test.todo('アクティブプレイヤーの交代ができる');
+	test('アクティブプレイヤーの交代ができる', () => {
+		const game = new Game('れつ', 'おおくら');
+		game.turnChange();
+		expect(game.isActivePlayer()).toBe('おおくら');
+		game.turnChange();
+		expect(game.isActivePlayer()).toBe('れつ');
+	});
 });
