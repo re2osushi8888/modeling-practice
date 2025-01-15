@@ -6,10 +6,12 @@ describe('Game', () => {
 		const game = new Game('れつ', 'おおくら');
 		expect(game.getWinner()).toBe('れつ');
 	});
+
 	test('ダメージを与えてライフを0にしたプレイヤーが勝利する', () => {
 		const game = new Game('れつ', 'おおくら');
-		game.attackToInactivePlayer(1)
+		game.attackToInactivePlayer(1);
 		expect(game.getWinner()).toBe('れつ');
 	});
+
 	test.todo('アクティブプレイヤーの交代ができる');
 });
