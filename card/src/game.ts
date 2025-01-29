@@ -1,40 +1,39 @@
+import type { Player } from './player';
+
 export class Game {
 	isActivePlayer(): string {
-		return this.activePlayer;
+		return this.activePlayer.name;
 	}
 
 	turnChange(): void {
-		if (this.activePlayer === this.player1Name) {
-			this.activePlayer = this.player2Name;
+		if (this.activePlayer === this.player1) {
+			this.activePlayer = this.player2;
 		} else {
-			this.activePlayer = this.player1Name;
+			this.activePlayer = this.player1;
 		}
 	}
 
 	constructor(
-		// TODO: playerのinterfaceを切る
-		private player1Name: string,
-		private player2Name: string,
-		private player1Life = 1,
-		private player2Life = 1,
-		private activePlayer: string = player1Name,
+		private player1: Player,
+		private player2: Player,
+		private activePlayer: Player = player1,
 	) {}
 
 	getWinner(): string | null {
-		if (this.player1Life <= 0) {
-			return this.player2Name;
+		if (this.player1.life <= 0) {
+			return this.player2.name;
 		}
-		if (this.player2Life <= 0) {
-			return this.player1Name;
+		if (this.player2.life <= 0) {
+			return this.player1.name;
 		}
 		return null;
 	}
 
 	attackToInactivePlayer(damage: number): void {
-		if (this.isActivePlayer() === this.player1Name) {
-			this.player2Life -= damage;
+		if (this.isActivePlayer() === this.player1.name) {
+			this.player2.life -= damage;
 		} else {
-			this.player1Life -= damage;
+			this.player1.life -= damage;
 		}
 	}
 }
