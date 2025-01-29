@@ -22,20 +22,20 @@ export class Game {
 	}
 
 	getWinner(): string | null {
-		if (this.player1.life <= 0) {
-			return this.player2.name;
+		if (this.player1.getLife() <= 0) {
+			return this.player2.getName();
 		}
-		if (this.player2.life <= 0) {
-			return this.player1.name;
+		if (this.player2.getLife() <= 0) {
+			return this.player1.getName();
 		}
 		return null;
 	}
 
 	attackToInactivePlayer(damage: number): void {
 		if (this.isActivePlayer() === this.player1) {
-			this.player2.life -= damage;
+			this.player2.takeDamage(damage);
 		} else {
-			this.player1.life -= damage;
+			this.player1.takeDamage(damage);
 		}
 	}
 }
