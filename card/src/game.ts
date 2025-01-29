@@ -1,8 +1,8 @@
 import type { Player } from './player';
 
 export class Game {
-	isActivePlayer(): string {
-		return this.activePlayer.name;
+	isActivePlayer(): Player {
+		return this.activePlayer;
 	}
 
 	turnChange(): void {
@@ -17,7 +17,9 @@ export class Game {
 		private player1: Player,
 		private player2: Player,
 		private activePlayer: Player = player1,
-	) {}
+	) {
+		this.activePlayer.manaCharge();
+	}
 
 	getWinner(): string | null {
 		if (this.player1.life <= 0) {
@@ -30,7 +32,7 @@ export class Game {
 	}
 
 	attackToInactivePlayer(damage: number): void {
-		if (this.isActivePlayer() === this.player1.name) {
+		if (this.isActivePlayer() === this.player1) {
 			this.player2.life -= damage;
 		} else {
 			this.player1.life -= damage;

@@ -30,23 +30,37 @@ describe('Game', () => {
 		const okura = new Player('おおくら');
 		const game = new Game(retsu, okura);
 		game.turnChange();
-		expect(game.isActivePlayer()).toBe('おおくら');
+		expect(game.isActivePlayer()).toBe(okura);
 		game.turnChange();
-		expect(game.isActivePlayer()).toBe('れつ');
+		expect(game.isActivePlayer()).toBe(retsu);
 	});
 });
 
-describe('カード', () => {
-	test.todo('カードをプレイするとダメージを与えられる');
+describe('Player', () => {
+	describe('マナ', () => {
+		test('最初のプレイヤーはマナが1チャージされている', () => {
+			const retsu = new Player('れつ');
+			const okura = new Player('おおくら');
+			const game = new Game(retsu, okura);
+			expect(game.isActivePlayer().getMana()).toBe(1);
+		});
+		// test('最初のプレイヤーはマナが1チャージされている', () => {
+		// 	const retsu = new Player('れつ');
+		// 	const okura = new Player('おおくら');
+		// 	const game = new Game(retsu, okura);
+		// 	expect(game.isActivePlayer().mana).toBe(1);
+		// 	// game.turnChange();
+		// 	// game.turnChange();
+		// 	// expect(game.isActivePlayer().mana).toBe(2);
+		// });
+
+		test.todo('マナを消費してカードがプレイできる');
+		test.todo('マナがターン開始時に上限値までチャージされる');
+		test.todo('マナがターン開始時に上限値が1増える');
+		test.todo('11ターン目にはマナが10になる');
+	});
 });
 
-describe('マナ', () => {
-	test.todo('マナがターンごとに増えていく');
-	test.todo('マナを消費してカードがプレイできる');
-	test.todo('マナがターン開始時に上限値までチャージされる');
-	test.todo('マナがターン開始時に上限値が1増える');
-	test.todo('11ターン目にはマナが10になる');
-});
 describe('デッキ', () => {
 	test.todo('ターン開始時に1枚のカードがドローができる');
 });
