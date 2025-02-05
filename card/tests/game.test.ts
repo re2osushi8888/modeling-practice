@@ -44,19 +44,20 @@ describe('Player', () => {
 			const game = new Game(retsu, okura);
 			expect(game.getActivePlayer().getMana()).toBe(1);
 		});
-		test('3ターン目に最初のプレイヤーの初期マナが2', () => {
+		test('21ターン目に最初のプレイヤーの初期マナが10', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
-			game.turnChange();
-			game.turnChange();
-			expect(game.getActivePlayer().getMana()).toBe(2);
+			for (let i = 1; i < 21; i++) {
+				game.turnChange();
+			}
+			// 最初のプレイヤーに戻っていることを確認
+			expect(game.getActivePlayer()).toBe(retsu);
+			expect(game.getActivePlayer().getMana()).toBe(10);
 		});
-
 		test.todo('マナを消費してカードがプレイできる');
 		test.todo('マナがターン開始時に上限値までチャージされる');
 		test.todo('マナがターン開始時に上限値が1増える');
-		test.todo('11ターン目にはマナが10になる');
 	});
 });
 
