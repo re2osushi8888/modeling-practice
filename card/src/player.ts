@@ -1,10 +1,16 @@
 export class Player {
+	private MAX_MANA = 10;
+
 	constructor(
 		private name: string,
 		private life = 1,
 		private mana = 0,
 	) {}
 	manaCharge(): void {
+		if (this.MAX_MANA <= this.mana) {
+			this.mana = this.MAX_MANA;
+			return;
+		}
 		this.mana += 1;
 	}
 	takeDamage(damage: number): void {
