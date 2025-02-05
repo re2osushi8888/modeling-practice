@@ -55,9 +55,21 @@ describe('Player', () => {
 			expect(game.getActivePlayer()).toBe(retsu);
 			expect(game.getActivePlayer().getMana()).toBe(10);
 		});
-		test.todo('マナを消費してカードがプレイできる');
+		describe("マナを消費してカードがプレイできる", () => {
+			test('1ターン目に1マナのカードを使用した場合', () => {
+				const retsu = new Player('れつ');
+				const okura = new Player('おおくら');
+				const game = new Game(retsu, okura);
+
+				game.attackToInactivePlayer(1);
+				expect(game.getActivePlayer().getMana()).toBe(0);
+			});
+			test.todo("5マナ持っている状態で3マナのカードを使用した場合→所持マナが2になる", () => {})
+		})
+
 		test.todo('マナがターン開始時に上限値までチャージされる');
 		test.todo('マナがターン開始時に上限値が1増える');
+		test.todo("自分の持っているマナより大きい数のカードは使用できない")
 	});
 });
 

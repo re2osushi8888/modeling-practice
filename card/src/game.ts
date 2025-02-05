@@ -32,11 +32,12 @@ export class Game {
 		return null;
 	}
 
-	attackToInactivePlayer(damage: number): void {
+	attackToInactivePlayer(cardMana: number): void {
 		if (this.getActivePlayer() === this.player1) {
-			this.player2.takeDamage(damage);
+			this.player2.takeDamage(cardMana);
 		} else {
-			this.player1.takeDamage(damage);
+			this.player1.takeDamage(cardMana);
 		}
+		this.getActivePlayer().reduceMana(cardMana)
 	}
 }

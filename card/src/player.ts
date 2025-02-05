@@ -6,7 +6,7 @@ export class Player {
 		private life = 1,
 		private mana = 0,
 	) {}
-	manaCharge(): void {
+	manaCharge() {
 		if (this.MAX_MANA <= this.mana) {
 			this.mana = this.MAX_MANA;
 			return;
@@ -24,5 +24,8 @@ export class Player {
 	}
 	getLife(): number {
 		return this.life;
+	}
+	reduceMana(cardMana: number) {
+		this.mana -= cardMana;
 	}
 }
