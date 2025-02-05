@@ -3,11 +3,10 @@ import { Game } from '../src/game';
 import { Player } from '../src/player';
 
 describe('Game', () => {
-	describe('getWinner', () => {
+	describe('勝利条件', () => {
 		test.todo('ダメージが0だと両方勝っていない');
 	});
-
-	describe('ダメージを与えてライフを0にしたプレイヤーが勝利する', () => {
+	describe('攻撃', () => {
 		test('れつがおおくらに攻撃', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
@@ -24,52 +23,54 @@ describe('Game', () => {
 			expect(game.getWinner()).toBe('おおくら');
 		});
 	});
-
-	test('アクティブプレイヤーの交代ができる', () => {
-		const retsu = new Player('れつ');
-		const okura = new Player('おおくら');
-		const game = new Game(retsu, okura);
-		game.turnChange();
-		expect(game.getActivePlayer()).toBe(okura);
-		game.turnChange();
-		expect(game.getActivePlayer()).toBe(retsu);
+	describe('交代', () => {
+		test('アクティブプレイヤーの交代ができる', () => {
+			const retsu = new Player('れつ');
+			const okura = new Player('おおくら');
+			const game = new Game(retsu, okura);
+			game.turnChange();
+			expect(game.getActivePlayer()).toBe(okura);
+			game.turnChange();
+			expect(game.getActivePlayer()).toBe(retsu);
+		});
 	});
 });
 
 describe('Player', () => {
 	describe('マナ', () => {
-		test('最初のプレイヤーはマナが1チャージされている', () => {
-			const retsu = new Player('れつ');
-			const okura = new Player('おおくら');
-			const game = new Game(retsu, okura);
-			expect(game.getActivePlayer().getMana()).toBe(1);
-		});
-		test('21ターン目に最初のプレイヤーの初期マナが10', () => {
-			const retsu = new Player('れつ');
-			const okura = new Player('おおくら');
-			const game = new Game(retsu, okura);
-			for (let i = 1; i < 21; i++) {
-				game.turnChange();
-			}
-			// 最初のプレイヤーに戻っていることを確認
-			expect(game.getActivePlayer()).toBe(retsu);
-			expect(game.getActivePlayer().getMana()).toBe(10);
-		});
-		describe("マナを消費してカードがプレイできる", () => {
-			test('1ターン目に1マナのカードを使用した場合', () => {
+		describe('チャージ', () => {
+			test('最初のプレイヤーはマナが1チャージされている', () => {
 				const retsu = new Player('れつ');
 				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
-
-				game.attackToInactivePlayer(1);
-				expect(game.getActivePlayer().getMana()).toBe(0);
+				expect(game.getActivePlayer().getMana()).toBe(1);
 			});
-			test.todo("5マナ持っている状態で3マナのカードを使用した場合→所持マナが2になる", () => {})
-		})
+			test('21ターン目に最初のプレイヤーの初期マナが10', () => {
+				const retsu = new Player('れつ');
+				const okura = new Player('おおくら');
+				const game = new Game(retsu, okura);
+				for (let i = 1; i < 21; i++) {
+					game.turnChange();
+				}
+				// 最初のプレイヤーに戻っていることを確認
+				expect(game.getActivePlayer()).toBe(retsu);
+				expect(game.getActivePlayer().getMana()).toBe(10);
+			});
+		});
+		describe('消費', () => {
+			test('5マナ持っている状態で3マナのカードを使用した場合→所持マナが2になる', () => {
+				const retsu = new Player('れつ', 5, 5);
+				const okura = new Player('おおくら', 5, 5);
+				const game = new Game(retsu, okura);
+
+				game.attackToInactivePlayer(3);
+				expect(game.getActivePlayer().getMana()).toBe(2);
+			});
+		});
 
 		test.todo('マナがターン開始時に上限値までチャージされる');
 		test.todo('マナがターン開始時に上限値が1増える');
-		test.todo("自分の持っているマナより大きい数のカードは使用できない")
+		test.todo('自分の持っているマナより大きい数のカードは使用できない');
 	});
 });
 
