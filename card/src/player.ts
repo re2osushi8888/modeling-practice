@@ -4,7 +4,7 @@ export class Player {
 	constructor(
 		private name: string,
 		private life = 1,
-		private mana = 0,
+		private mana = 1,
 	) {}
 	manaCharge() {
 		if (this.MAX_MANA <= this.mana) {

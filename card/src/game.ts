@@ -5,9 +5,7 @@ export class Game {
 		private player1: Player,
 		private player2: Player,
 		private activePlayer: Player = player1,
-	) {
-		this.activePlayer.manaCharge();
-	}
+	) {}
 
 	getActivePlayer(): Player {
 		return this.activePlayer;
@@ -38,6 +36,6 @@ export class Game {
 		} else {
 			this.player1.takeDamage(cardMana);
 		}
-		this.getActivePlayer().reduceMana(cardMana)
+		this.getActivePlayer().reduceMana(cardMana);
 	}
 }
