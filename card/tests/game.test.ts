@@ -30,9 +30,9 @@ describe('Game', () => {
 		const okura = new Player('おおくら');
 		const game = new Game(retsu, okura);
 		game.turnChange();
-		expect(game.isActivePlayer()).toBe(okura);
+		expect(game.getActivePlayer()).toBe(okura);
 		game.turnChange();
-		expect(game.isActivePlayer()).toBe(retsu);
+		expect(game.getActivePlayer()).toBe(retsu);
 	});
 });
 
@@ -42,15 +42,15 @@ describe('Player', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
-			expect(game.isActivePlayer().getMana()).toBe(1);
+			expect(game.getActivePlayer().getMana()).toBe(1);
 		});
-		test('ターン開始時にマナが1チャージされている', () => {
+		test('3ターン目に最初のプレイヤーの初期マナが2', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
 			game.turnChange();
 			game.turnChange();
-			expect(game.isActivePlayer().getMana()).toBe(2);
+			expect(game.getActivePlayer().getMana()).toBe(2);
 		});
 
 		test.todo('マナを消費してカードがプレイできる');

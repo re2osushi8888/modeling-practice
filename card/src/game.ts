@@ -1,7 +1,15 @@
 import type { Player } from './player';
 
 export class Game {
-	isActivePlayer(): Player {
+	constructor(
+		private player1: Player,
+		private player2: Player,
+		private activePlayer: Player = player1,
+	) {
+		this.activePlayer.manaCharge();
+	}
+
+	getActivePlayer(): Player {
 		return this.activePlayer;
 	}
 
@@ -11,13 +19,6 @@ export class Game {
 		} else {
 			this.activePlayer = this.player1;
 		}
-	}
-
-	constructor(
-		private player1: Player,
-		private player2: Player,
-		private activePlayer: Player = player1,
-	) {
 		this.activePlayer.manaCharge();
 	}
 
@@ -32,7 +33,7 @@ export class Game {
 	}
 
 	attackToInactivePlayer(damage: number): void {
-		if (this.isActivePlayer() === this.player1) {
+		if (this.getActivePlayer() === this.player1) {
 			this.player2.takeDamage(damage);
 		} else {
 			this.player1.takeDamage(damage);
