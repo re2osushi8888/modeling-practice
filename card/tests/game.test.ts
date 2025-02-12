@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'bun:test';
 import { Game } from '../src/game';
+import { Mana } from '../src/mana';
 import { Player } from '../src/player';
 
 describe('Game', () => {
@@ -43,7 +44,7 @@ describe('Player', () => {
 				const retsu = new Player('れつ');
 				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
-				expect(game.getActivePlayer().getMana()).toBe(1);
+				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(1);
 			});
 			test('21ターン目に最初のプレイヤーの初期マナが10', () => {
 				const retsu = new Player('れつ');
@@ -54,17 +55,17 @@ describe('Player', () => {
 				}
 				// 最初のプレイヤーに戻っていることを確認
 				expect(game.getActivePlayer()).toBe(retsu);
-				expect(game.getActivePlayer().getMana()).toBe(10);
+				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(10);
 			});
 		});
 		describe('消費', () => {
 			test('5マナ持っている状態で3マナのカードを使用した場合→所持マナが2になる', () => {
-				const retsu = new Player('れつ', 5, 5);
-				const okura = new Player('おおくら', 5, 5);
+				const retsu = new Player('れつ', 5, new Mana(5));
+				const okura = new Player('おおくら', 5, new Mana(5));
 				const game = new Game(retsu, okura);
 
 				game.attackToInactivePlayer(3);
-				expect(game.getActivePlayer().getMana()).toBe(2);
+				expect(game.getActivePlayer().getMana().getRemainedMana()).toBe(2);
 			});
 		});
 		test('最初のターンにカードを使い、次の自分のターンに所持マナが2', () => {
@@ -75,7 +76,7 @@ describe('Player', () => {
 			game.attackToInactivePlayer(1);
 			game.turnChange();
 			game.turnChange();
-			expect(game.getActivePlayer().getMana()).toBe(2);
+			expect(game.getActivePlayer().getMana().getMaxMana()).toBe(2);
 		});
 		test.todo('2ターン目のプレイヤーはマナが1');
 		test.todo('マナがターン開始時に上限値までチャージされる');
