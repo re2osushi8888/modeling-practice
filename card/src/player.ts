@@ -1,31 +1,21 @@
-export class Player {
-	private MAX_MANA = 10;
+import { Mana } from './mana';
 
+export class Player {
 	constructor(
 		private name: string,
 		private life = 1,
-		private mana = 1,
+		private mana = new Mana(1),
 	) {}
-	manaCharge() {
-		if (this.MAX_MANA <= this.mana) {
-			this.mana = this.MAX_MANA;
-			return;
-		}
-		this.mana += 1;
-	}
-	takeDamage(damage: number): void {
-		this.life -= damage;
-	}
-	getMana(): number {
-		return this.mana;
-	}
 	getName(): string {
 		return this.name;
 	}
 	getLife(): number {
 		return this.life;
 	}
-	reduceMana(cardMana: number) {
-		this.mana -= cardMana;
+	getMana(): Mana {
+		return this.mana;
+	}
+	takeDamage(damage: number): void {
+		this.life -= damage;
 	}
 }
