@@ -78,7 +78,8 @@ describe('Player', () => {
 			game.turnChange();
 			expect(game.getActivePlayer().getMana().getMaxMana()).toBe(2);
 		});
-		test.todo('2ターン目のプレイヤーはマナが1');
+
+		test('2ターン目のプレイヤーはマナが1', () => {});
 		test.todo('マナがターン開始時に上限値までチャージされる');
 		test.todo('マナがターン開始時に上限値が1増える');
 		test.todo('自分の持っているマナより大きい数のカードは使用できない');
