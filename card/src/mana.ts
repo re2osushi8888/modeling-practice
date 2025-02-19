@@ -2,7 +2,7 @@ export class Mana {
 	private MANA_LIMIT = 10;
 
 	constructor(
-		private maxMana = 1,
+		private maxMana = 0,
 		private remainedMana = maxMana,
 	) {}
 	getMaxMana(): number {

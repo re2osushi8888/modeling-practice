@@ -4,7 +4,7 @@ export class Player {
 	constructor(
 		private name: string,
 		private life = 1,
-		private mana = new Mana(1),
+		private mana = new Mana(0),
 	) {}
 	getName(): string {
 		return this.name;

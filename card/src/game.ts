@@ -5,7 +5,11 @@ export class Game {
 		private player1: Player,
 		private player2: Player,
 		private activePlayer: Player = player1,
-	) {}
+	) {
+	}
+	start(): void {
+		this.activePlayer.getMana().charge()
+	}
 
 	getActivePlayer(): Player {
 		return this.activePlayer;
