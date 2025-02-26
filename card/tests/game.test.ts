@@ -4,12 +4,14 @@ import { Mana } from '../src/mana';
 import { Player } from '../src/player';
 
 describe('Game', () => {
-	describe('勝利条件', () => {
-		test.todo('ダメージが0だと両方勝っていない');
-		// FIXME:普通の勝利条件が書いてない
+	describe('開始', () => {
+		test.todo('開始せずにはいかなるメソッドも呼び出せない');
+		test.todo('先攻先攻プレイヤーの手札は4枚からスタートする');
+		test.todo('後攻プレイヤーはゲーム開始時の初期手札が3枚からスタートする');
 	});
 	describe('攻撃', () => {
-		test('れつがおおくらに攻撃', () => {
+		// FIXME:ライフの概念を入れる
+		test('先攻が後攻に攻撃', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -17,7 +19,8 @@ describe('Game', () => {
 			// FIXME:ここのexpectはgetWinnerではない気がする。ライフを見るべきでは？
 			expect(game.getWinner()).toBe('れつ');
 		});
-		test('交代しておおくらがれつに攻撃', () => {
+		// FIXME:ライフの概念を入れる
+		test('交代して後攻が先攻に攻撃', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -37,6 +40,11 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer()).toBe(retsu);
 		});
+	});
+	describe('勝利条件', () => {
+		test.todo('ダメージが0だと両方勝っていない');
+		test.todo('後攻プレイヤーのライフが0なら先攻プレイヤーの勝利');
+		test.todo('先攻プレイヤーのライフが0なら後攻プレイヤーの勝利');
 	});
 });
 
@@ -61,7 +69,7 @@ describe('Player', () => {
 				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(1);
 			});
 			test('11ターン目に先攻プレイヤーの初期マナが10', () => {
-				const retsu = new Player('れつ');
+				const retsu = new Player('れつ', 1, new Mana(1));
 				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
 				// FIXME：forループわかりにくい
