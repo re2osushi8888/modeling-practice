@@ -6,6 +6,7 @@ import { Player } from '../src/player';
 describe('Game', () => {
 	describe('勝利条件', () => {
 		test.todo('ダメージが0だと両方勝っていない');
+		// FIXME:普通の勝利条件が書いてない
 	});
 	describe('攻撃', () => {
 		test('れつがおおくらに攻撃', () => {
@@ -13,6 +14,7 @@ describe('Game', () => {
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
 			game.attackToInactivePlayer(1);
+			// FIXME:ここのexpectはgetWinnerではない気がする。ライフを見るべきでは？
 			expect(game.getWinner()).toBe('れつ');
 		});
 		test('交代しておおくらがれつに攻撃', () => {
@@ -21,6 +23,7 @@ describe('Game', () => {
 			const game = new Game(retsu, okura);
 			game.turnChange();
 			game.attackToInactivePlayer(1);
+			// FIXME:ここのexpectはgetWinnerではない気がする。ライフを見るべきでは？
 			expect(game.getWinner()).toBe('おおくら');
 		});
 	});
@@ -45,6 +48,7 @@ describe('Player', () => {
 				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
 				game.start();
+				// FIXME:マナの取得が気持ち悪い
 				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(1);
 			});
 			test('1ターン目の後攻プレイヤーはマナが1', () => {
@@ -53,12 +57,14 @@ describe('Player', () => {
 				const game = new Game(retsu, okura);
 				game.start();
 				game.turnChange();
+				// FIXME:マナの取得が気持ち悪い
 				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(1);
 			});
 			test('11ターン目に先攻プレイヤーの初期マナが10', () => {
 				const retsu = new Player('れつ');
 				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
+				// FIXME：forループわかりにくい
 				for (let i = 1; i < 21; i++) {
 					game.turnChange();
 				}
@@ -73,6 +79,7 @@ describe('Player', () => {
 				const okura = new Player('おおくら', 5, new Mana(5));
 				const game = new Game(retsu, okura);
 
+				// FIXME: game.start()してない
 				game.attackToInactivePlayer(3);
 				expect(game.getActivePlayer().getMana().getRemainedMana()).toBe(2);
 			});
@@ -84,6 +91,7 @@ describe('Player', () => {
 			game.start();
 
 			game.attackToInactivePlayer(1);
+			// FIXME: turnChangeいっぱいあるとわかりづらい
 			game.turnChange();
 			game.turnChange();
 			expect(game.getActivePlayer().getMana().getMaxMana()).toBe(2);
