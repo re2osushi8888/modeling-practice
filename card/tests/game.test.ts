@@ -6,7 +6,15 @@ import { Player } from '../src/player';
 describe('Game', () => {
 	describe('開始', () => {
 		test.todo('開始せずにはいかなるメソッドも呼び出せない');
-		test.todo('先攻先攻プレイヤーの手札は4枚からスタートする');
+		// TODO：ここからスタートして、手札の概念を拡張していく作戦
+		test('先攻先攻プレイヤーの手札は4枚からスタートする', () => {
+			const retsu = new Player('れつ');
+			const okura = new Player('おおくら');
+			const game = new Game(retsu, okura);
+
+			game.start();
+			expect(game.getActivePlayer().getHand().length).toBe(4);
+		});
 		test.todo('後攻プレイヤーはゲーム開始時の初期手札が3枚からスタートする');
 	});
 	describe('攻撃', () => {
