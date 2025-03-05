@@ -24,15 +24,21 @@ export class Game {
 		return null;
 	}
 
-	turnChange(): void {
+	turnEnd(): void {
 		if (this.activePlayer === this.player1) {
 			this.activePlayer = this.player2;
 		} else {
 			this.activePlayer = this.player1;
 		}
+	}
+	turnStart(): void {
+		this.activePlayer.draw();
 		this.activePlayer.getMana().charge();
 	}
-
+	turnChange(): void {
+		this.turnEnd();
+		this.turnStart();
+	}
 	attackToInactivePlayer(cardMana: number): void {
 		if (this.getActivePlayer() === this.player1) {
 			this.player2.takeDamage(cardMana);

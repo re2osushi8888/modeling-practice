@@ -55,7 +55,15 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer()).toBe(retsu);
 		});
-		test.todo('後攻プレイヤーは1ターン目に手札が4枚');
+		test('後攻プレイヤーは1ターン目に手札が4枚', () => {
+			const retsu = new Player('れつ');
+			const okura = new Player('おおくら');
+			const game = new Game(retsu, okura);
+
+			game.start();
+			game.turnChange();
+			expect(game.getActivePlayer().getHand().length).toBe(4);
+		});
 	});
 	describe('勝利条件', () => {
 		test.todo('ダメージが0だと両方勝っていない');
