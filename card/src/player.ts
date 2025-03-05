@@ -5,9 +5,10 @@ export class Player {
 		private name: string,
 		private life = 1,
 		private mana = new Mana(0),
+		private hand = [1, 2, 3],
 	) {}
 	getHand(): Array<number> {
-		return [1, 2, 3, 4];
+		return this.hand;
 	}
 	getName(): string {
 		return this.name;
@@ -20,5 +21,8 @@ export class Player {
 	}
 	takeDamage(damage: number): void {
 		this.life -= damage;
+	}
+	draw() {
+		this.hand.push(4);
 	}
 }

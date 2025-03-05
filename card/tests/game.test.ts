@@ -7,6 +7,7 @@ describe('Game', () => {
 	describe('開始', () => {
 		test.todo('開始せずにはいかなるメソッドも呼び出せない');
 		test('先攻プレイヤーの手札は4枚からスタートする', () => {
+			// TODO Playerオブジェクトはミュータブルで今後プログラムが拡張されるとバグを埋め込む可能性があるため、どこかでイミュータブルにしたい
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -14,7 +15,14 @@ describe('Game', () => {
 			game.start();
 			expect(game.getActivePlayer().getHand().length).toBe(4);
 		});
-		test.todo('後攻プレイヤーはゲーム開始時の初期手札が3枚からスタートする');
+		test('後攻プレイヤーはゲーム開始時の初期手札が3枚からスタートする', () => {
+			const retsu = new Player('れつ');
+			const okura = new Player('おおくら');
+			const game = new Game(retsu, okura);
+
+			game.start();
+			expect(okura.getHand().length).toBe(3);
+		});
 	});
 	describe('攻撃', () => {
 		// FIXME:ライフの概念を入れる
