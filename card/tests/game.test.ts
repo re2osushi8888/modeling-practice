@@ -6,8 +6,7 @@ import { Player } from '../src/player';
 describe('Game', () => {
 	describe('開始', () => {
 		test.todo('開始せずにはいかなるメソッドも呼び出せない');
-		// TODO：ここからスタートして、手札の概念を拡張していく作戦
-		test('先攻先攻プレイヤーの手札は4枚からスタートする', () => {
+		test('先攻プレイヤーの手札は4枚からスタートする', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
