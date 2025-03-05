@@ -6,6 +6,9 @@ export class Player {
 		private life = 1,
 		private mana = new Mana(0),
 	) {}
+	getHand(): Array<number> {
+		return [1, 2, 3, 4];
+	}
 	getName(): string {
 		return this.name;
 	}
