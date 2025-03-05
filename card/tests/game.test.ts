@@ -23,6 +23,8 @@ describe('Game', () => {
 			game.start();
 			expect(okura.getHand().length).toBe(3);
 		});
+		test.todo('開始時のマナのテスト考える');
+		test.todo('開始時のライフのテスト考える');
 	});
 	describe('攻撃', () => {
 		// FIXME:ライフの概念を入れる
@@ -44,6 +46,9 @@ describe('Game', () => {
 			// FIXME:ここのexpectはgetWinnerではない気がする。ライフを見るべきでは？
 			expect(game.getWinner()).toBe('おおくら');
 		});
+		test.todo('ライフが減る系のテスト考える');
+		test.todo('マナが減る系のテスト考える');
+		test.todo('手札が減る系のテスト考える');
 	});
 	describe('交代', () => {
 		test('アクティブプレイヤーの交代ができる', () => {
@@ -64,6 +69,7 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer().getHand().length).toBe(4);
 		});
+		test.todo('交代したらマナが増える系のテスト考える');
 	});
 	describe('勝利条件', () => {
 		test.todo('ダメージが0だと両方勝っていない');
