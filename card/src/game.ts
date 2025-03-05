@@ -8,7 +8,6 @@ export class Game {
 	) {}
 	start(): void {
 		this.activePlayer.getMana().charge();
-		this.activePlayer.draw();
 	}
 
 	getActivePlayer(): Player {

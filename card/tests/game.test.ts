@@ -6,16 +6,16 @@ import { Player } from '../src/player';
 describe('Game', () => {
 	describe('開始', () => {
 		test.todo('開始せずにはいかなるメソッドも呼び出せない');
-		test('先攻プレイヤーの手札は4枚からスタートする', () => {
+		test('先攻プレイヤーの手札は3枚からスタートする', () => {
 			// TODO Playerオブジェクトはミュータブルで今後プログラムが拡張されるとバグを埋め込む可能性があるため、どこかでイミュータブルにしたい
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
 
 			game.start();
-			expect(game.getActivePlayer().getHand().length).toBe(4);
+			expect(game.getActivePlayer().getHand().length).toBe(3);
 		});
-		test('後攻プレイヤーはゲーム開始時の初期手札が3枚からスタートする', () => {
+		test('後攻プレイヤーの手札は3枚からスタートする', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -55,6 +55,7 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer()).toBe(retsu);
 		});
+		test.todo('後攻プレイヤーは1ターン目に手札が4枚');
 	});
 	describe('勝利条件', () => {
 		test.todo('ダメージが0だと両方勝っていない');
