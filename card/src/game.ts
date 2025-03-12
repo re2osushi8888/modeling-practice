@@ -39,12 +39,14 @@ export class Game {
 		this.turnEnd();
 		this.turnStart();
 	}
-	attackToInactivePlayer(cardMana: number): void {
+	attackToInactivePlayer(card: number): void {
 		if (this.getActivePlayer() === this.player1) {
-			this.player2.takeDamage(cardMana);
+			this.player2.takeDamage(card);
+			this.player1.useCard(card);
 		} else {
-			this.player1.takeDamage(cardMana);
+			this.player1.takeDamage(card);
+			this.player2.useCard(card);
 		}
-		this.getActivePlayer().getMana().reduce(cardMana);
+		this.getActivePlayer().getMana().reduce(card);
 	}
 }
