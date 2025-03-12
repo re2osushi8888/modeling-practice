@@ -6,16 +6,16 @@ import { Player } from '../src/player';
 describe('Game', () => {
 	describe('開始', () => {
 		test.todo('開始せずにはいかなるメソッドも呼び出せない');
-		test('先攻プレイヤーの手札は3枚からスタートする', () => {
+		test.todo('先攻プレイヤーの手札は3枚からスタートする', () => {
 			// TODO Playerオブジェクトはミュータブルで今後プログラムが拡張されるとバグを埋め込む可能性があるため、どこかでイミュータブルにしたい
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
 
 			game.start();
-			expect(game.getActivePlayer().getHand().length).toBe(3);
+			expect(game.getActivePlayer().getHand().length).toBe(6);
 		});
-		test('後攻プレイヤーの手札は3枚からスタートする', () => {
+		test.todo('後攻プレイヤーの手札は3枚からスタートする', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -49,14 +49,6 @@ describe('Game', () => {
 		test.todo('ライフが減る系のテスト考える');
 		test.todo('マナが減る系のテスト考える');
 		test.todo('手札が減る系のテスト考える');
-		// TODO: 来週ここから着手
-		describe('先攻の手札が[1,2,3]の1ターン目', () => {
-			describe('1のカードをプレイ', () => {
-				test.todo('手札が[2,3]');
-				test.todo('マナが0');
-				test.todo('後攻のライフが1減る');
-			});
-		});
 	});
 	describe('交代', () => {
 		test('アクティブプレイヤーの交代ができる', () => {
@@ -68,7 +60,7 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer()).toBe(retsu);
 		});
-		test('後攻プレイヤーは1ターン目に手札が4枚', () => {
+		test.todo('後攻プレイヤーは1ターン目に手札が4枚', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -145,6 +137,26 @@ describe('Player', () => {
 		test.todo('マナがターン開始時に上限値までチャージされる');
 		test.todo('マナがターン開始時に上限値が1増える');
 		test.todo('自分の持っているマナより大きい数のカードは使用できない');
+	});
+	describe('手札', () => {
+		describe('1のカードをプレイ', () => {
+			test('残った手札が[2,3]', () => {
+				const retsu = new Player('れつ');
+				retsu.useCard(1);
+				expect(retsu.getHand()).toEqual([2, 3, 4, 5, 5]);
+			});
+			test.todo('マナが0');
+			test.todo('後攻のライフが1減る');
+		});
+		describe('2のカードをプレイ', () => {
+			test('残った手札が[1,3]', () => {
+				const retsu = new Player('れつ');
+				retsu.useCard(2);
+				expect(retsu.getHand()).toEqual([1, 3, 4, 5, 5]);
+			});
+		});
+		// 来週はここから始める
+		describe.todo('手札に重複するカードがある場合', () => {});
 	});
 });
 
