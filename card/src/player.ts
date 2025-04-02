@@ -26,6 +26,9 @@ export class Player {
 		this.hand.push(4);
 	}
 	useCard(card: number): void {
-		this.hand = this.hand.filter((n) => n !== card);
+		const index = this.hand.indexOf(card);
+		if (index === -1) return;
+		
+		this.hand.splice(index, 1);
 	}
 }
