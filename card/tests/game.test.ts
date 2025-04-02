@@ -139,8 +139,8 @@ describe('Player', () => {
 		test.todo('自分の持っているマナより大きい数のカードは使用できない');
 	});
 	describe('手札', () => {
-		describe('1のカードをプレイ', () => {
-			test('残った手札が[2,3]', () => {
+		describe('手札に1枚しかないカードをプレイする場合', () => {
+			test('プレイしたカードが手札からなくなる', () => {
 				const retsu = new Player('れつ');
 				retsu.useCard(1);
 				expect(retsu.getHand()).toEqual([2, 3, 4, 5, 5]);
@@ -148,15 +148,13 @@ describe('Player', () => {
 			test.todo('マナが0');
 			test.todo('後攻のライフが1減る');
 		});
-		describe('2のカードをプレイ', () => {
-			test('残った手札が[1,3]', () => {
+		describe('手札に重複するカードがある場合', () => {
+			test('プレイしたカードが手札からなくなる', () => {
 				const retsu = new Player('れつ');
-				retsu.useCard(2);
-				expect(retsu.getHand()).toEqual([1, 3, 4, 5, 5]);
+				retsu.useCard(5);
+				expect(retsu.getHand()).toEqual([1, 2, 3, 4, 5]);
 			});
 		});
-		// 来週はここから始める
-		describe.todo('手札に重複するカードがある場合', () => {});
 	});
 });
 
