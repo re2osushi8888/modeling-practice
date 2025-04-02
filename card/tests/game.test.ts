@@ -6,16 +6,16 @@ import { Player } from '../src/player';
 describe('Game', () => {
 	describe('開始', () => {
 		test.todo('開始せずにはいかなるメソッドも呼び出せない');
-		test.todo('先攻プレイヤーの手札は3枚からスタートする', () => {
+		test('先攻プレイヤーの手札は3枚からスタートする', () => {
 			// TODO Playerオブジェクトはミュータブルで今後プログラムが拡張されるとバグを埋め込む可能性があるため、どこかでイミュータブルにしたい
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
 
 			game.start();
-			expect(game.getActivePlayer().getHand().length).toBe(6);
+			expect(game.getActivePlayer().getHand().length).toBe(3);
 		});
-		test.todo('後攻プレイヤーの手札は3枚からスタートする', () => {
+		test('後攻プレイヤーの手札は3枚からスタートする', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -60,7 +60,7 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer()).toBe(retsu);
 		});
-		test.todo('後攻プレイヤーは1ターン目に手札が4枚', () => {
+		test('後攻プレイヤーは1ターン目に手札が4枚', () => {
 			const retsu = new Player('れつ');
 			const okura = new Player('おおくら');
 			const game = new Game(retsu, okura);
@@ -141,7 +141,12 @@ describe('Player', () => {
 	describe('手札', () => {
 		describe('手札に1枚しかないカードをプレイする場合', () => {
 			test('プレイしたカードが手札からなくなる', () => {
-				const retsu = new Player('れつ');
+				const retsu = new Player(
+					'れつ',
+					undefined,
+					undefined,
+					[1, 2, 3, 4, 5, 5],
+				);
 				retsu.useCard(1);
 				expect(retsu.getHand()).toEqual([2, 3, 4, 5, 5]);
 			});
@@ -150,7 +155,12 @@ describe('Player', () => {
 		});
 		describe('手札に重複するカードがある場合', () => {
 			test('プレイしたカードが手札からなくなる', () => {
-				const retsu = new Player('れつ');
+				const retsu = new Player(
+					'れつ',
+					undefined,
+					undefined,
+					[1, 2, 3, 4, 5, 5],
+				);
 				retsu.useCard(5);
 				expect(retsu.getHand()).toEqual([1, 2, 3, 4, 5]);
 			});
