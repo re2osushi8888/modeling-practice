@@ -27,25 +27,26 @@ describe('Game', () => {
 		test.todo('開始時のライフのテスト考える');
 	});
 	describe('攻撃', () => {
-		test('先攻が後攻に攻撃', () => {
-			const retsu = new Player('れつ', 2);
-			const okura = new Player('おおくら', 2);
-			const game = new Game(retsu, okura);
-			game.attackToInactivePlayer(1);
+		describe('ライフ', () => {
+			test('先攻が攻撃したら後攻のライフが減る', () => {
+				const retsu = new Player('れつ', 2);
+				const okura = new Player('おおくら', 2);
+				const game = new Game(retsu, okura);
+				game.attackToInactivePlayer(1);
 
-			expect(game.getInActivePlayer().getLife()).toBe(1);
+				expect(game.getInActivePlayer().getLife()).toBe(1);
+			});
+			test('後攻が攻撃したら先攻のライフが減る', () => {
+				const retsu = new Player('れつ', 2);
+				const okura = new Player('おおくら', 2);
+				const game = new Game(retsu, okura);
+				game.turnChange();
+				game.attackToInactivePlayer(1);
+
+				expect(game.getInActivePlayer().getLife()).toBe(1);
+			});
 		});
-		// FIXME:ライフの概念を入れる
-		test('交代して後攻が先攻に攻撃', () => {
-			const retsu = new Player('れつ');
-			const okura = new Player('おおくら');
-			const game = new Game(retsu, okura);
-			game.turnChange();
-			game.attackToInactivePlayer(1);
-			// FIXME:ここのexpectはgetWinnerではない気がする。ライフを見るべきでは？
-			expect(game.getWinner()).toBe('おおくら');
-		});
-		test.todo('ライフが減る系のテスト考える');
+
 		test.todo('マナが減る系のテスト考える');
 		test.todo('手札が減る系のテスト考える');
 	});
