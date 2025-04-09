@@ -1,24 +1,24 @@
 export class Mana {
-	private MANA_LIMIT = 10;
+	private LIMIT = 10;
 
 	constructor(
-		private maxMana = 0,
-		private remainedMana = maxMana,
+		private capacity = 0,
+		private available = capacity,
 	) {}
-	getMaxMana(): number {
-		return this.maxMana;
+	getCapacity(): number {
+		return this.capacity;
 	}
-	getRemainedMana(): number {
-		return this.remainedMana;
+	getAvailable(): number {
+		return this.available;
 	}
 	charge() {
-		if (this.MANA_LIMIT <= this.maxMana) {
-			this.maxMana = this.MANA_LIMIT;
+		if (this.LIMIT <= this.capacity) {
+			this.capacity = this.LIMIT;
 			return;
 		}
-		this.maxMana += 1;
+		this.capacity += 1;
 	}
 	reduce(cardMana: number) {
-		this.remainedMana -= cardMana;
+		this.available -= cardMana;
 	}
 }

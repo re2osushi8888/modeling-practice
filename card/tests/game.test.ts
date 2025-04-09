@@ -102,8 +102,7 @@ describe('Player', () => {
 				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
 				game.start();
-				// FIXME:マナの取得が気持ち悪い
-				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(1);
+				expect(game.getActivePlayer().getMana().getCapacity()).toBe(1);
 			});
 			test('1ターン目の後攻プレイヤーはマナが1', () => {
 				const retsu = new Player('れつ');
@@ -111,8 +110,7 @@ describe('Player', () => {
 				const game = new Game(retsu, okura);
 				game.start();
 				game.turnChange();
-				// FIXME:マナの取得が気持ち悪い
-				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(1);
+				expect(game.getActivePlayer().getMana().getCapacity()).toBe(1);
 			});
 			test('11ターン目に先攻プレイヤーの初期マナが10', () => {
 				const retsu = new Player('れつ', 1, new Mana(1));
@@ -124,7 +122,7 @@ describe('Player', () => {
 				}
 				// 最初のプレイヤーに戻っていることを確認
 				expect(game.getActivePlayer()).toBe(retsu);
-				expect(game.getActivePlayer().getMana().getMaxMana()).toBe(10);
+				expect(game.getActivePlayer().getMana().getCapacity()).toBe(10);
 			});
 		});
 		describe('消費', () => {
@@ -135,7 +133,7 @@ describe('Player', () => {
 
 				// FIXME: game.start()してない
 				game.attackToInactivePlayer(3);
-				expect(game.getActivePlayer().getMana().getRemainedMana()).toBe(2);
+				expect(game.getActivePlayer().getMana().getAvailable()).toBe(2);
 			});
 		});
 		test('先攻プレイヤーが1ターン目にカードを使い、2ターン目に所持マナが2', () => {
@@ -148,7 +146,7 @@ describe('Player', () => {
 			// FIXME: turnChangeいっぱいあるとわかりづらい
 			game.turnChange();
 			game.turnChange();
-			expect(game.getActivePlayer().getMana().getMaxMana()).toBe(2);
+			expect(game.getActivePlayer().getMana().getCapacity()).toBe(2);
 		});
 		test.todo('マナがターン開始時に上限値までチャージされる');
 		test.todo('マナがターン開始時に上限値が1増える');
