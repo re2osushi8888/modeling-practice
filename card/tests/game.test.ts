@@ -69,7 +69,8 @@ describe('Game', () => {
 			game.turnChange();
 			expect(game.getActivePlayer().getHand().length).toBe(4);
 		});
-		test.todo('交代したらマナが増える系のテスト考える');
+		test.todo('交代したらマナが増える');
+		test.todo('交代したら手札が増える');
 	});
 	describe('勝利条件', () => {
 		test('ダメージが0だと両方勝っていない', () => {
