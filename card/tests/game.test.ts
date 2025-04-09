@@ -47,7 +47,9 @@ describe('Game', () => {
 			});
 		});
 
-		test.todo('マナが減る系のテスト考える');
+		test('マナが減る系のテスト考える', () => {
+			expect(true).toBe(false);
+		});
 		test.todo('手札が減る系のテスト考える');
 	});
 	describe('交代', () => {
