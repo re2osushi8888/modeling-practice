@@ -27,14 +27,13 @@ describe('Game', () => {
 		test.todo('開始時のライフのテスト考える');
 	});
 	describe('攻撃', () => {
-		// FIXME:ライフの概念を入れる
 		test('先攻が後攻に攻撃', () => {
-			const retsu = new Player('れつ');
-			const okura = new Player('おおくら');
+			const retsu = new Player('れつ', 2);
+			const okura = new Player('おおくら', 2);
 			const game = new Game(retsu, okura);
 			game.attackToInactivePlayer(1);
-			// FIXME:ここのexpectはgetWinnerではない気がする。ライフを見るべきでは？
-			expect(game.getWinner()).toBe('れつ');
+
+			expect(game.getInActivePlayer().getLife()).toBe(1);
 		});
 		// FIXME:ライフの概念を入れる
 		test('交代して後攻が先攻に攻撃', () => {
@@ -72,11 +71,24 @@ describe('Game', () => {
 		test.todo('交代したらマナが増える系のテスト考える');
 	});
 	describe('勝利条件', () => {
-		test.todo('ダメージが0だと両方勝っていない');
-		test('後攻プレイヤーのライフが0なら先攻プレイヤーの勝利', () => {
-			expect(true).toBe(false);
+		test('ダメージが0だと両方勝っていない', () => {
+			const retsu = new Player('れつ', 1);
+			const okura = new Player('おおくら', 1);
+			const game = new Game(retsu, okura);
+			expect(game.getWinner()).toBe(null);
 		});
-		test.todo('先攻プレイヤーのライフが0なら後攻プレイヤーの勝利');
+		test('後攻プレイヤーのライフが0なら先攻プレイヤーの勝利', () => {
+			const retsu = new Player('れつ');
+			const okura = new Player('おおくら', 0);
+			const game = new Game(retsu, okura);
+			expect(game.getWinner()).toBe('れつ');
+		});
+		test('先攻プレイヤーのライフが0なら後攻プレイヤーの勝利', () => {
+			const retsu = new Player('れつ', 0);
+			const okura = new Player('おおくら');
+			const game = new Game(retsu, okura);
+			expect(game.getWinner()).toBe('おおくら');
+		});
 	});
 });
 

@@ -14,6 +14,13 @@ export class Game {
 		return this.activePlayer;
 	}
 
+	getInActivePlayer() {
+		if (this.activePlayer === this.player1) {
+			return this.player2;
+		}
+		return this.player1;
+	}
+
 	getWinner(): string | null {
 		if (this.player1.getLife() <= 0) {
 			return this.player2.getName();
