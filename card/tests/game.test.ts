@@ -42,13 +42,19 @@ describe('Game', () => {
 				const game = new Game(retsu, okura);
 				game.turnChange();
 				game.attackToInactivePlayer(1);
-
 				expect(game.getInActivePlayer().getLife()).toBe(1);
 			});
 		});
 
-		test('マナが減る系のテスト考える', () => {
-			expect(true).toBe(false);
+		describe('マナ', () => {
+			test('1のカードを使うと使えるマナが1減る', () => {
+				const retsu = new Player('れつ', 2);
+				const okura = new Player('おおくら', 2);
+				const game = new Game(retsu, okura);
+				game.start();
+				game.attackToInactivePlayer(1);
+				expect(game.getActivePlayer().getMana().getAvailable()).toBe(0);
+			});
 		});
 		test.todo('手札が減る系のテスト考える');
 	});

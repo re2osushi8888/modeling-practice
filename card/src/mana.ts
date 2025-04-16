@@ -17,6 +17,7 @@ export class Mana {
 			return;
 		}
 		this.capacity += 1;
+		this.available = this.capacity;
 	}
 	reduce(cardMana: number) {
 		this.available -= cardMana;
