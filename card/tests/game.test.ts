@@ -47,9 +47,9 @@ describe('Game', () => {
 		});
 
 		describe('マナ', () => {
-			test('1のカードを使うと使えるマナが1減る', () => {
-				const retsu = new Player('れつ', 2);
-				const okura = new Player('おおくら', 2);
+			test('使ったカードの値分マナが減る', () => {
+				const retsu = new Player('れつ');
+				const okura = new Player('おおくら');
 				const game = new Game(retsu, okura);
 				game.start();
 				game.attackToInactivePlayer(1);

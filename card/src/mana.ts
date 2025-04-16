@@ -12,12 +12,14 @@ export class Mana {
 		return this.available;
 	}
 	charge() {
-		if (this.LIMIT <= this.capacity) {
-			this.capacity = this.LIMIT;
-			return;
-		}
-		this.capacity += 1;
+		this.capacity = this.calc_capacity();
 		this.available = this.capacity;
+	}
+	private calc_capacity() {
+		if (this.LIMIT <= this.capacity) {
+			return this.LIMIT;
+		}
+		return this.capacity + 1;
 	}
 	reduce(cardMana: number) {
 		this.available -= cardMana;
