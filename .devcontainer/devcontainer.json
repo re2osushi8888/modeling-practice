@@ -31,12 +31,13 @@
 					"**/devcontainer.json"
 				]
 			}
-		}
+		} 
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {},
 		"ghcr.io/devcontainers-community/npm-features/typescript:1": {},
 		"ghcr.io/devcontainers/features/git:1": {},
-		"ghcr.io/shyim/devcontainers-features/bun:0": {}
+		"ghcr.io/shyim/devcontainers-features/bun:0": {},
+		"ghcr.io/devcontainers-extra/features/haskell:2": {}
 	}
 }
