@@ -16,7 +16,7 @@ ghci> :quit
 ```
 
 ## ファイルの実行
-``` 
+```
 $ stack runghc hello.hs
 ```
 
