@@ -10,7 +10,8 @@
 				"yoavbls.pretty-ts-errors",
 				"streetsidesoftware.code-spell-checker",
 				"biomejs.biome",
-				"ms-playwright.playwright"
+				"ms-playwright.playwright",
+				"ms-vsliveshare.vsliveshare"
 			],
 			"settings": {
 				"editor.formatOnSave": true,
@@ -31,7 +32,7 @@
 					"**/devcontainer.json"
 				]
 			}
-		} 
+		}
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {},
