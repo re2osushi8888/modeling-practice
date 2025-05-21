@@ -1,6 +1,5 @@
-module Lib
-    ( someFunc
-    ) where
+-- src/Lib.hs
+module Lib where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+add :: Int -> Int -> Int
+add x y = x + y

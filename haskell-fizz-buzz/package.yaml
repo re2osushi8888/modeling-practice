@@ -21,6 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- hspec
 
 ghc-options:
 - -Wall
@@ -46,6 +47,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - haskell-fizz-buzz
+    - hspec
 
 tests:
   haskell-fizz-buzz-test:
@@ -57,3 +59,4 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - haskell-fizz-buzz
+    - hspec

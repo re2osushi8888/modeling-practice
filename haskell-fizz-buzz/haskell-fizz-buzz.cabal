@@ -35,6 +35,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , hspec
   default-language: Haskell2010
 
 executable haskell-fizz-buzz-exe
@@ -49,6 +50,7 @@ executable haskell-fizz-buzz-exe
   build-depends:
       base >=4.7 && <5
     , haskell-fizz-buzz
+    , hspec
   default-language: Haskell2010
 
 test-suite haskell-fizz-buzz-test
@@ -64,4 +66,5 @@ test-suite haskell-fizz-buzz-test
   build-depends:
       base >=4.7 && <5
     , haskell-fizz-buzz
+    , hspec
   default-language: Haskell2010
