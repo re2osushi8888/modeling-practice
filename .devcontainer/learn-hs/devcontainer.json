@@ -1,0 +1,32 @@
+{
+  "name": "learn-hs",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  "workspaceFolder": "/workspaces/modeling-practice/learn-hs",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vsliveshare.vsliveshare",
+        "haskell.haskell"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+        "cSpell.ignorePaths": [
+          "**/package.json",
+          "**/settings.json",
+          "**/node_modules/**",
+          "**/vscode-extension/**",
+          "**/.vscode/**",
+          "**/yarn.lock",
+          "**/devcontainer.json"
+        ]
+      }
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  }
+}
