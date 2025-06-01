@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Add
+      If
       Lib
   other-modules:
       Paths_learn_hs
