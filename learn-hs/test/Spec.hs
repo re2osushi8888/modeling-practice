@@ -3,8 +3,13 @@
 import Lib (add)
 import Test.Hspec
 
+-- 再帰版のfizzBuzzLoop
 fizzBuzzLoop :: Integer -> [String]
-fizzBuzzLoop x = map fizzBuzz (enumFromTo 1 x)
+fizzBuzzLoop x = fizzBuzzHelper 1 x
+  where
+    fizzBuzzHelper current limit
+      | current > limit = []
+      | otherwise = fizzBuzz current : fizzBuzzHelper (current + 1) limit
 
 fizzBuzz :: Integer -> String
 fizzBuzz x = 
