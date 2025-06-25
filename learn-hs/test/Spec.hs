@@ -5,22 +5,18 @@ import Test.Hspec
 
 -- 再帰版のfizzBuzzLoop
 fizzBuzzLoop :: Integer -> [String]
-fizzBuzzLoop x = fizzBuzzHelper 1 x
+fizzBuzzLoop = fizzBuzzHelper 1
   where
     fizzBuzzHelper current limit
       | current > limit = []
       | otherwise = fizzBuzz current : fizzBuzzHelper (current + 1) limit
 
 fizzBuzz :: Integer -> String
-fizzBuzz x = 
-  if mod x 15 == 0
-    then "FizzBuzz"
-  else if mod x 3 == 0 
-    then "Fizz" 
-  else if mod x 5 == 0 
-    then "Buzz" 
-  else
-    show x
+fizzBuzz x
+  | mod x 15 == 0 = "FizzBuzz"
+  | mod x 3 == 0 = "Fizz"
+  | mod x 5 == 0 = "Buzz"
+  | otherwise = show x
 
 main :: IO ()
 main = hspec $ do
