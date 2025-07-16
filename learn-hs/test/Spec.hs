@@ -1,48 +1,36 @@
 {-# OPTIONS_GHC -Wno-type-defaults #-}
 
-import Lib (add)
 import Test.Hspec
 
--- 再帰版のfizzBuzzLoop
-fizzBuzzLoop :: Integer -> [String]
-fizzBuzzLoop = fizzBuzzHelper 1
-  where
-    fizzBuzzHelper current limit
-      | current > limit = []
-      | otherwise = fizzBuzz current : fizzBuzzHelper (current + 1) limit
+fibonacci :: Integer -> Integer
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci 2 = 1
+fibonacci n = fibonacci (n - 1) + fibonacci (n - 2)
 
-fizzBuzz :: Integer -> String
-fizzBuzz x
-  | mod x 15 == 0 = "FizzBuzz"
-  | mod x 3 == 0 = "Fizz"
-  | mod x 5 == 0 = "Buzz"
-  | otherwise = show x
+-- main :: IO ()
+-- main = hspec $ do
+--   describe "Fibonacci" $ do
+--     it "1を入力すると1が返る" $ do
+--       fibonacci 1 `shouldBe` 1
+--     it "2を入力すると1が返る" $ do
+--       fibonacci 2 `shouldBe` 1
+--     it "3を入力すると2が返る" $ do
+--       fibonacci 3 `shouldBe` 2
+--     it "4を入力すると3が返る" $ do
+--       fibonacci 4 `shouldBe` 3
+--     it "5を入力すると5が返る" $ do
+--       fibonacci 5 `shouldBe` 5
+--     it "6を入力すると8が返る" $ do
+--       fibonacci 6 `shouldBe` 8
+--     it "7を入力すると13が返る" $ do
+--       fibonacci 7 `shouldBe` 13
 
 main :: IO ()
 main = hspec $ do
-  describe "Example test" $ do
-    it "1 + 1 = 2" $ do
-      add 1 1 `shouldBe` 2
-    it "2 + 2 = 4" $ do
-      (2 + 2) `shouldBe` 4
-  describe "Fizz Buzz" $ do
-    it "1を入力すると1が返る" $ do
-      fizzBuzz 1 `shouldBe` "1"
-    it "2を入力すると2が返る" $ do
-      fizzBuzz 2 `shouldBe` "2"
-    it "3を入力するとfizzが返る" $ do
-      fizzBuzz 3 `shouldBe` "Fizz"
-    it "6を入力するとfizzが返る" $ do
-      fizzBuzz 6 `shouldBe` "Fizz"
-    it "5を入力するとBuzzが返る" $ do
-      fizzBuzz 5 `shouldBe` "Buzz"
-    it "15を入力するとFizzBuzzが返る" $ do
-      fizzBuzz 15 `shouldBe` "FizzBuzz"
-
-  describe "FizzBuzzLoop" $ do
-    it "1を入力すると[1]が返る" $ do
-      fizzBuzzLoop 1 `shouldBe` ["1"]
-    it "3を入れると[1,2,Fizz]が返る" $ do
-      fizzBuzzLoop 3 `shouldBe` ["1", "2", "Fizz"]
-    it "15を入れても正しい値が返る" $ do
-      fizzBuzzLoop 15 `shouldBe` ["1", "2", "Fizz", "4", "Buzz", "Fizz", "7", "8", "Fizz", "Buzz", "11", "Fizz", "13", "14", "FizzBuzz"]
+  describe "Fibonacci" $ do
+    let testCases = [(1, 1), (2, 1), (3, 2), (4, 3), (5, 5), (6, 8), (7, 13)]
+    mapM_ (\(input, expected) ->
+      it (show input ++ "を入力すると" ++ show expected ++ "が返る") $
+        fibonacci input `shouldBe` expected
+      ) testCases
